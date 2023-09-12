@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justcallmeahann/don-henry-cafe-api.git"
+    "url": "git+https://github.com/lisethgira/don-henry-cafe-api"
   },
   "keywords": [
     "henry",
@@ -26,9 +26,9 @@
   "author": "ahann",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/justcallmeahann/don-henry-cafe-api/issues"
+    "url": "https://github.com/lisethgira/don-henry-cafe-api/issues"
   },
-  "homepage": "https://github.com/justcallmeahann/don-henry-cafe-api#readme",
+  "homepage": "https://github.com/lisethgira/don-henry-cafe-api#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.35.0",

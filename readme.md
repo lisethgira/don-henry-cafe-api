@@ -7,7 +7,7 @@
 <h2>Don Henry Café.</h2>
 <h3 align="center">Rest API for Don Henry Café app!</h3>
 
-[Demo](https://donhenrycafe.vercel.app/) · [Related Projects](#related-projects)
+[Demo](https://donhenrycafe.vercel.app) · [Related Projects](#related-projects)
 
 <h3 align="center">Powered by Vercel ⚡</h3>
 </div><br>

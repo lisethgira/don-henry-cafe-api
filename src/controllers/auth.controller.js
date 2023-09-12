@@ -192,7 +192,7 @@ async function requestResetPass(req, res) {
     console.log(url);
     sendForgotPass({
       to: email,
-      url: `https://don-henry-cafe-api.vercel.app/${url}`,
+      url: `https://donhenrycafeapi.vercel.app/${url}`,
     });
     res.status(201).json({
       msg: "Link reset password created! Expired in 10 minutes",
