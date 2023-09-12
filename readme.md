@@ -154,9 +154,9 @@ For MongoDB, You just setup and define it to env the database, it will be automa
 ## Contributors
 
 - [Liseth Arelis Giraldo Morales](https://github.com/lisethgira)
-- [José Antonio Ortiz](https://github.com/lisethgira)
-- [Maria Carolina Escudero](https://github.com/lisethgira)
-- [Francisco Abraham ](https://github.com/lisethgira)
+- [José Antonio Ortiz](https://github.com/Josed1804)
+- [Maria Carolina Escudero](https://github.com/ESCUDERO457)
+- [Francisco Abraham ](https://github.com/frankc2812)
   
 ## License
 
@@ -165,4 +165,4 @@ Apache License 2.0
 ## Report
 
 Any error report you can pull request
-or contact: <lisethgiraldo628@gmail.com>,<>,<>,<>
+or contact: <lisethgiraldo628@gmail.com>,<mcescudero111@misena.edu.co>,<jaortiz6575@misena.edu.co>,<lagiraldo@misena.edu.co>
