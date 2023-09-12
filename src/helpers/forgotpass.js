@@ -17,7 +17,7 @@ const sendForgotPass = ({ to, subject, url }) => {
   const mailOptions = {
     from: "no-reply <no-reply@efbewe.com>",
     to: data.to,
-    subject: "Reset Password for jokopi account",
+    subject: "Reset Password for Don Henry Café account",
     text: `Hey dude!, seems you requested new password, here new link :${url}./ If you are not request this, just ignore it.`,
     html: mustache.render(templates, { ...data }),
   };

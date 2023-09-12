@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "a4d5190f-2074-486b-9977-e7fc0911b6d3",
-    "name": "Jokopi Test API",
+    "name": "Don Henry Café Test API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "26209677",
     "_collection_link": "https://www.postman.com/digital-squad-fw14/workspace/jokopi/collection/26209677-a4d5190f-2074-486b-9977-e7fc0911b6d3?action=share&creator=26209677&source=collection_link"
@@ -1370,7 +1370,7 @@
     },
     {
       "key": "USER_TOKEN",
-      "value": "jokopi.vercel.app",
+      "value": "don-henry-cafe-api.vercel.app",
       "type": "string"
     },
     {
