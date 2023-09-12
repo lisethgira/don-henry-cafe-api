@@ -40,7 +40,6 @@ The REST API follows the principles of Representational State Transfer (REST), w
 - Upload Images
 - CRUD (Products, User, Transactions, Promo)
 - Whitelisting JWT
-- Remote Notification to Android & iOS App
 - Error Handling & Validation
 
 ## Tech Stack
@@ -72,7 +71,7 @@ The REST API follows the principles of Representational State Transfer (REST), w
 1. Clone this repository to your local
 
    ```bash
-   git clone https://github.com/nyannss/don-hery-cafe-api.git
+   git clone https://github.com/lisethgira/don-henry-cafe-api.git
    ```
 
 2. Install dependencies
@@ -161,9 +160,9 @@ For MongoDB, You just setup and define it to env the database, it will be automa
   
 ## License
 
-This project using ISC License
+Apache License 2.0
 
 ## Report
 
 Any error report you can pull request
-or contact: <nyannss@proton.me>
+or contact: <lisethgiraldo628@gmail.com>,<>,<>,<>
