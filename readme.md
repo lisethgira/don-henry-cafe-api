@@ -137,7 +137,7 @@ The REST API follows the principles of Representational State Transfer (REST), w
 
 ## Postman Documentation
 
-You can see the documentation from [Postman](https://elements.getpostman.com/redirect?entityId=26209677-a4d5190f-2074-486b-9977-e7fc0911b6d3&entityType=collection) or import it with [json file](/postman.json).
+You can see the documentation from [Postman](https://www.postman.com/maintenance-physicist-69747530/workspace/don-henry-cafe/collection/13731149-6e16a1f0-563e-481d-84bc-ab78933921f7?action=share&creator=13731149) or import it with [json file](/postman.json).
 
 If you using json file, just open your postman and click import.
 
@@ -156,7 +156,7 @@ For MongoDB, You just setup and define it to env the database, it will be automa
 - [Liseth Arelis Giraldo Morales](https://github.com/lisethgira)
 - [José Antonio Ortiz](https://github.com/Josed1804)
 - [Maria Carolina Escudero](https://github.com/ESCUDERO457)
-- [Francisco Abraham ](https://github.com/frankc2812)
+- [Francisco Abraham](https://github.com/frankc2812)
   
 ## License
 
