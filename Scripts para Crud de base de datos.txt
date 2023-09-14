@@ -1,0 +1,179 @@
+CREATE (INSERT):
+
+Categorías:
+INSERT INTO public.categories ("name") VALUES ('Nombre de la categoría');
+
+Entregas:
+INSERT INTO public.deliveries ("name", fee) VALUES ('Nombre de la entrega', 0);
+
+Pagos:
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('Código de pago', 'Nombre del pago', 0, 0, 0);
+
+Tamaños de producto:
+INSERT INTO public.product_size ("name", price) VALUES ('Tamaño de producto', 0.00);
+
+
+Roles:
+INSERT INTO public.product_size ("name", price) VALUES ('Tamaño de producto', 0.00);
+
+
+Estado:
+INSERT INTO public.status ("name") VALUES ('Nombre del estado');
+
+
+Productos:
+INSERT INTO public.products ("name", price, category_id, img, "desc") VALUES ('Nombre del producto', 0, 0, 'imagen.jpg', 'Descripción del producto');
+
+Promociones:
+INSERT INTO public.promo ("name", "desc", discount, start_date, end_date, coupon_code, product_id, img) VALUES ('Nombre de la promoción', 
+'Descripción de la promoción', 0, '2023-09-13', '2023-09-14', 'Código del cupón', 0, 'imagen_promo.jpg');
+
+Usuarios:
+INSERT INTO public.users (email, "password", phone_number, role_id) VALUES ('correo@ejemplo.com', 'contraseña', '1234567890', 1);
+
+Carritos:
+INSERT INTO public.carts (user_id, product_id, size_id, count) VALUES (0, 0, 0, 1);
+
+
+Tokens FCM (Firebase Cloud Messaging):
+INSERT INTO public.fcm_tokens ("token", user_id) VALUES ('token_fcm', 0);
+
+Restablecimiento de Contraseña:
+INSERT INTO public.reset_password (user_id, verify, code) VALUES (0, 'verificación', 'código');
+
+
+Transacciones:
+INSERT INTO public.transactions (user_id, promo_id, shipping_address, notes, delivery_id, status_id, payment_id, grand_total) VALUES (0, 0, 
+'Dirección de envío', 'Notas de la transacción', 1, 1, NULL, 0);
+
+Perfil de Usuario:
+INSERT INTO public.user_profile (user_id, display_name, first_name, last_name, address, birthdate, img, gender) VALUES (0, 
+'Nombre de visualización', 'Nombre', 'Apellido', 'Dirección', '1990-01-01', 'imagen_perfil.jpg', 1);
+
+Tamaño de Producto de Transacción:
+INSERT INTO public.transaction_product_size (transaction_id, product_id, size_id, qty, subtotal) VALUES (0, 0, 0, '1', 0);
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+READ (SELECT):
+
+Seleccionar todas las categorías:
+SELECT * FROM public.categories;
+
+Seleccionar todas las entregas:
+SELECT * FROM public.deliveries;
+
+Seleccionar todos los pagos:
+SELECT * FROM public.payments;
+
+Seleccionar todos los tamaños de producto:
+SELECT * FROM public.product_size;
+
+
+Seleccionar todos los roles:
+SELECT * FROM public.roles;
+
+Seleccionar todos los estados:
+SELECT * FROM public.status;
+
+Seleccionar todos los productos:
+SELECT * FROM public.products;
+
+Seleccionar todas las promociones:
+SELECT * FROM public.promo;
+
+Seleccionar todos los usuarios:
+SELECT * FROM public.users;
+
+Seleccionar todos los carritos:
+SELECT * FROM public.carts;
+
+Seleccionar todos los tokens FCM:
+SELECT * FROM public.fcm_tokens;
+
+Seleccionar todas las transacciones:
+SELECT * FROM public.transactions;
+
+Seleccionar todos los perfiles de usuario:
+SELECT * FROM public.user_profile;
+
+Seleccionar todos los tamaños de producto de transacción:
+SELECT * FROM public.transaction_product_size;
+
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+Entregas:
+
+INSERT INTO public.deliveries ("name", fee) VALUES ('Entrega a Domicilio', 5);
+INSERT INTO public.deliveries ("name", fee) VALUES ('Entrega Express', 8);
+INSERT INTO public.deliveries ("name", fee) VALUES ('Entrega Programada', 6);
+INSERT INTO public.deliveries ("name", fee) VALUES ('Recogida en Tienda', 0);
+INSERT INTO public.deliveries ("name", fee) VALUES ('Entrega Nacional', 15);
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Pagos:
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('tarjeta_credito', 'Tarjeta de Crédito', 0, 0, 2);
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('paypal', 'PayPal', 0, 0, 1);
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('transferencia', 'Transferencia Bancaria', 0, 0, 0);
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('efectivo', 'Efectivo', 0, 0, 0);
+INSERT INTO public.payments (code, "name", min_amount, max_amount, fee) VALUES ('apple_pay', 'Apple Pay', 0, 0, 1.5);
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Tamaños de Producto:
+INSERT INTO public.product_size ("name", price) VALUES ('Pequeño', 5.99);
+INSERT INTO public.product_size ("name", price) VALUES ('Mediano', 8.99);
+INSERT INTO public.product_size ("name", price) VALUES ('Grande', 12.99);
+INSERT INTO public.product_size ("name", price) VALUES ('Extra Grande', 15.99);
+INSERT INTO public.product_size ("name", price) VALUES ('Tamaño Personalizado', 0);
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Roles:
+INSERT INTO public.roles ("name") VALUES ('Administrador');
+INSERT INTO public.roles ("name") VALUES ('Cliente');
+INSERT INTO public.roles ("name") VALUES ('Repartidor');
+INSERT INTO public.roles ("name") VALUES ('Gerente');
+INSERT INTO public.roles ("name") VALUES ('Cajero');
+
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+-- Supongamos que el producto que deseas pedir es "Producto de Ejemplo" de la categoría 1 (cambiar según tu base de datos).
+-- Supongamos que el tamaño del producto que deseas es "Mediano" (cambiar según tu base de datos).
+-- Supongamos que hay un descuento del 10% en este producto.
+
+-- Primero, obtenemos el ID del producto deseado.
+SELECT id FROM public.products WHERE "name" = 'Producto de Ejemplo' LIMIT 1;
+
+-- Luego, obtenemos el ID del tamaño del producto deseado.
+SELECT id FROM public.product_size WHERE "name" = 'Mediano' LIMIT 1;
+
+-- Ahora, calculamos el precio del producto según el tamaño.
+-- Supongamos que el precio base es $10.
+SELECT
+    CASE
+        WHEN (SELECT discount FROM public.promo WHERE product_id = 1) IS NOT NULL THEN
+            -- Si hay un descuento, aplicamos el descuento.
+            (SELECT price FROM public.product_size WHERE "name" = 'Mediano') * 0.9  -- 10% de descuento
+        ELSE
+            (SELECT price FROM public.product_size WHERE "name" = 'Mediano')  -- Sin descuento
+    END AS precio_final;
+
+-- Luego, podemos insertar el pedido en la tabla de transacciones.
+-- Supongamos que el usuario con ID 1 está realizando el pedido.
+-- Supongamos que el método de entrega es 'Entrega a Domicilio' (cambiar según tu base de datos).
+-- Supongamos que el método de pago es 'Tarjeta de Crédito' (cambiar según tu base de datos).
+-- Supongamos que la cantidad deseada es 2.
+INSERT INTO public.transactions (user_id, promo_id, shipping_address, delivery_id, payment_id, grand_total)
+VALUES (1, 1, 'Dirección de Envío', 1, 1, (2 * (SELECT precio_final)));
+
+-- Finalmente, insertamos los detalles del producto en la tabla de tamaños de productos de transacción.
+-- Supongamos que el ID de la transacción generada es 1 (debe coincidir con el ID de la transacción que se creó anteriormente).
+-- Supongamos que el ID del producto y el ID del tamaño se obtuvieron en pasos anteriores.
+-- Supongamos que la cantidad deseada es 2 y el precio es el precio calculado anteriormente.
+INSERT INTO public.transaction_product_size (transaction_id, product_id, size_id, qty, subtotal)
+VALUES (1, 1, 1, '2', (2 * (SELECT precio_final)));
+

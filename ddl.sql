@@ -1,4 +1,7 @@
--- public.categories definition
+-- Database: donhenrycafe
+
+-- DROP DATABASE IF EXISTS donhenrycafe;-- public.categories definition
+
 -- Drop table
 -- DROP TABLE public.categories;
 CREATE TABLE public.categories (
