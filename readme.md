@@ -2,7 +2,7 @@
 
 ![alt text](./public/icon.png "Don Henry Café")
 
-[![Tech Stack](https://skillicons.dev/icons?i=nodejs,express,mongodb,postgres,vercel,firebase)](#tech-stack)
+[![Tech Stack](https://skillicons.dev/icons?i=nodejs,express,postgres,vercel,firebase)](#tech-stack)
 
 <h2>Don Henry Café.</h2>
 <h3 align="center">Rest API for Don Henry Café app!</h3>
@@ -47,7 +47,6 @@ The REST API follows the principles of Representational State Transfer (REST), w
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/) (for storing data)
-- [MongoDB](https://www.mongodb.com/) (for storing token whitelist)
 - [Cloudinary](https://cloudinary.com/) (for storing images)
 - [JSON Web Token](https://jwt.io/) (authorization)
 - [Vercel](https://vercel.com/) (for deploying)
@@ -61,7 +60,6 @@ The REST API follows the principles of Representational State Transfer (REST), w
 
 - [Node.js](https://nodejs.org/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [MongoDB](https://www.mongodb.com/)
 - [Cloudinary](https://cloudinary.com/)
 - [SMTP](https://nodemailer.com/usage/why-smtp/)
 - [Firebase Account](https://firebase.google.com/)
@@ -80,7 +78,7 @@ The REST API follows the principles of Representational State Transfer (REST), w
    cd don-henry-cafe-api && npm install
    ```
 
-3. Setup environments (you can see in `.env.example`)
+3. Setup environments (you can see in `.env.development`)
 
    - Database server using postgreSQL
 
@@ -96,15 +94,6 @@ The REST API follows the principles of Representational State Transfer (REST), w
 
      ```env
      JWT_SECRET_KEY = (put your secret key)
-     ```
-
-   - Database server using MongoDB [[you can create account in here]](<https://mongodb.com>)
-
-     ```env
-     MONGODB_HOST = (put your mongodb host)
-     MONGODB_USER = (put your mongodb user)
-     MONGODB_PASS = (put your mongodb password)
-     MONGODB_NAME = (put your mongodb database name)
      ```
 
    - Image server using Cloudinary [[you can create account in here]](<https://cloudinary.com/>)
@@ -143,9 +132,7 @@ If you using json file, just open your postman and click import.
 
 ## Table Structure
 
-For PostgreSQL, You can download table structure (ddl) from [this link](/ddl.sql).
-
-For MongoDB, You just setup and define it to env the database, it will be automatically created by [mongoose](https://www.npmjs.com/package/mongoose).
+For PostgreSQL, You can download table structure (ddl) from [this link](https://github.com/lisethgira/don-henry-cafe-api/blob/main/documentation/ddl.sql).
 
 ## Related Projects
 
@@ -165,4 +152,9 @@ Apache License 2.0
 ## Report
 
 Any error report you can pull request
-or contact: <lisethgiraldo628@gmail.com>,<mcescudero111@misena.edu.co>,<jaortiz6575@misena.edu.co>,<lagiraldo@misena.edu.co>
+or contact:
+
+- Liseth Arelis Giraldo Morales <lisethgiraldo628@gmail.com>
+- Maria Carolina Escudero <27052018estudio@gmail.com>
+- José Antonio Ortiz <josed_1804@hotmail.com>
+- Francisco Abraham <lesgopa12@gmail.com>
