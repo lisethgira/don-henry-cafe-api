@@ -21,6 +21,14 @@
     {
         "src": "/",
         "dest": "public/index.html"
+    },
+    {
+      "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/"
+        }
+      ]
     }
   ]
 }
