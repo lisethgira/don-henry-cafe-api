@@ -17,7 +17,8 @@ class daoAuth{
             await client.end()
         let result={
             error : false,
-            data : response.rows[0]
+            msg: "el usuario se ha logueado correctamente.",
+            data : response.rows[0],
         }
 
         return result

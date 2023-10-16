@@ -53,8 +53,8 @@ class Login {
 
         this.#objResult={
             error: query.error,
-            data: query.data,
             msg: query.msg,
+            data: query.data,
         }
     }
 }

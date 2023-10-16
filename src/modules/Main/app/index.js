@@ -11,10 +11,6 @@ const compression = require("compression");
 //Declaracion de variables globales
 app.set("port", process.env.APP_PORT);
 
-// routes
-const mainRoutes = require("../infra/http/apiMain.routes");
-const personRoutes = require("../../Persons/infra/http/apiPersons.routes")
-
 //Middlewares
 app.use(cors())
 app.use(express.json());
@@ -23,8 +19,9 @@ app.use(helmet());
 app.use(compression({ level: 9 }));
 
 //Router
-app.use("/henrycafe/api", mainRoutes);
-app.use("/henrycafe/api", personRoutes);
+app.use("/henrycafe/api", require("../infra/http/apiMain.routes"));
+app.use("/henrycafe/api", require("../../Persons/infra/http/apiPersons.routes"));
+app.use("/henrycafe/api", require("../../Auth/infra/http/apiAuth.routes"));
 
 //Static
 app.use(express.static("public"));
