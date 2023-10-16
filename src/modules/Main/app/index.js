@@ -22,6 +22,6 @@ app.use(compression({ level: 9 }));
 
 
 //Router
-app.use(require("../infra/http/apiMain.routes"))
+app.use(require("../../Auth/infra/http/apiAuth.routes"))
 
 module.exports = app

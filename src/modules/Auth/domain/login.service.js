@@ -2,7 +2,7 @@
 const validator = require("validator").default;
 
 //Interface
-const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOMain")
+const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 
 class Login {
     //Objetc
@@ -11,7 +11,6 @@ class Login {
 
     constructor(data){
         this.#objData = data
-        console.log(this.#objData)
     }
 
     async main(){
@@ -56,16 +55,6 @@ class Login {
             error: query.error,
             data: query.data,
             msg: query.msg,
-        }
-    }
-
-    async #getData(){
-        const dao = new classInterfaceDAOMain()
-        const query = await dao.getData(this.#objData)
-
-        this.#objResult={
-            error: query.error,
-            data : query.data
         }
     }
 }

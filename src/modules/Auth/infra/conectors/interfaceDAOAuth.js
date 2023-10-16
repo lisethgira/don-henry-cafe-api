@@ -1,4 +1,4 @@
-const classDao = require("../repository/daoMain")
+const classDao = require("../repository/daoAuth")
 
 class interfaceDAOMain{
 

@@ -1,7 +1,6 @@
 //Librerias
 const {Client} = require("pg")
 
-
 //Conexion
 const connection = require("../../../../common/config/confPG_connection")
 

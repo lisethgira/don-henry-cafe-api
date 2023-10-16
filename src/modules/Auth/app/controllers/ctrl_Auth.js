@@ -1,7 +1,7 @@
 const serviceLogin = require("../../domain/login.service")
 
 class ctrlMain{
-    async getData(req, res){
+    async Login(req, res){
         try {
             let data = req.body
 

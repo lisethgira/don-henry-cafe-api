@@ -1,15 +1,15 @@
 const routes = require("express").Router()
 
 //Class
-const classController = require("../../app/controllers/ctrl_Main")
+const classController = require("../../app/controllers/ctrl_Auth")
 
 routes.post("/login", async (req, res)=>{
     const controllerMain = new classController()
-    await controllerMain.getData(req, res)
+    await controllerMain.Login(req, res)
 })
 
 
-routers.get("/", (req, res) => {
+routes.get("/", (req, res) => {
     res.status(200).json({
       status: 200,
       msg: "Welcome to Rest API Don Henry Café app!",
