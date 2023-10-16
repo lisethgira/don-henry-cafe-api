@@ -4,17 +4,24 @@ const validator = require("validator").default;
 //Interface
 const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 
+//Sercive
+const serviceSetPerson = require("../../Persons/domain/setPerson.service")
+
 class Login {
     //Objetc
     #objData
     #objResult
 
-    constructor(data){
-        this.#objData = data 
+    //Variable
+    #intIdPerson
+
+    constructor(data) {
+        this.#objData = data
     }
 
-    async main(){
+    async main() {
         await this.#validations()
+        await this.#setPerson()
         await this.#validateData()
         //await this.#getData()
 
@@ -22,9 +29,10 @@ class Login {
     }
 
     //Validaciones del microservicio
-    async #validations(){
+    async #validations() {
         const dao = new classInterfaceDAOMain()
-        if (!this.#objData?.strUsername && !this.#objData?.strPassword){
+
+        if (!this.#objData) {
             throw new Error("Faltan campos requeridos.");
         }
 
@@ -32,18 +40,33 @@ class Login {
             throw new Error("El campo de Usuario contiene un formato no valido debe ser tipo email.");
         }
 
-        const queryGetUser = await dao.isExistsUser({strUsername:this.#objData.strUsername});
+        const queryGetUser = await dao.isExistsUser({ strUsername: this.#objData.strUsername });
 
         if (queryGetUser.error) {
             throw new Error(queryGetUser.msg)
         }
 
-        if (!queryGetUser.data) {
-            throw new Error("El usuario ingresado no exite.");
+        if (queryGetUser.data) {
+            throw new Error("El correo ingresado ya existe en nuestra base de datos.");
         }
     }
 
-    async #validateData(){
+    async #setPerson() {
+        const service = new serviceSetPerson({
+            strEmail:this.#objData?.strUsername,
+            strPhoneNumber:this.#objData?.strPhoneNumber
+        })
+
+        const query = await service.main()
+
+        if (query.error) {
+            throw new Error(query.msg)
+        }
+
+        this.#intIdPerson = query.data.intId
+    }
+
+    async #validateData() {
         const dao = new classInterfaceDAOMain()
         const query = await dao.validateUser(this.#objData)
 
@@ -51,7 +74,7 @@ class Login {
             throw new Error(query.msg)
         }
 
-        this.#objResult={
+        this.#objResult = {
             error: query.error,
             data: query.data,
             msg: query.msg,

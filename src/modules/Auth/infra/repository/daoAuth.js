@@ -4,7 +4,7 @@ const {Client} = require("pg")
 //Conexion
 const connection = require("../../../../common/config/confPG_connection")
 
-class daoMain{
+class daoAuth{
     async validateUser(data){
         try {
             const client = new Client(connection)
@@ -26,7 +26,7 @@ class daoMain{
                 error: true,
                 msg:
                     error.message ||
-                    "Error en el metodo validateUser de la clase daoMain",
+                    "Error en el metodo validateUser de la clase daoAuth",
             };
 
             return result;
@@ -53,7 +53,7 @@ class daoMain{
                 error: true,
                 msg:
                     error.message ||
-                    "Error en el metodo isExistsUser de la clase daoMain",
+                    "Error en el metodo isExistsUser de la clase daoAuth",
             };
 
             return result;
@@ -77,4 +77,4 @@ class daoMain{
 
 }
 
-module.exports = daoMain
+module.exports = daoAuth

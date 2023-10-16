@@ -13,6 +13,7 @@ app.set("port", process.env.APP_PORT);
 
 // routes
 const mainRoutes = require("../infra/http/apiMain.routes");
+const personRoutes = require("../../Persons/infra/http/apiPersons.routes")
 
 //Middlewares
 app.use(cors())
@@ -23,6 +24,7 @@ app.use(compression({ level: 9 }));
 
 //Router
 app.use("/henrycafe/api", mainRoutes);
+app.use("/henrycafe/api", personRoutes);
 
 //Static
 app.use(express.static("public"));

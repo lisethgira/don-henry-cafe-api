@@ -1,6 +1,7 @@
 const routes = require("express").Router();
 
-routes.get("/", (req, res) => {
+
+routes.get("/", async (req, res) => {
     res.status(200).json({
       status: 200,
       msg: "Welcome to Rest API Don Henry Café app!",
@@ -25,4 +26,4 @@ routes.get("/", (req, res) => {
     });
   });
 
-  module.export = routes;
+  module.exports = routes
