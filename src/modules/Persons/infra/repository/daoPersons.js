@@ -19,12 +19,13 @@ class daoPersons {
                     ${data.strEmail},
                     ${data.strPhoneNumber},
                 )
-                RETURNING intId`)
+                RETURNING "intId"`)
             
             await client.end()
 
             let result = {
                 error: false,
+                msg:"La persona fue registrada con exito.",
                 data: response.rows[0]
             }
 
