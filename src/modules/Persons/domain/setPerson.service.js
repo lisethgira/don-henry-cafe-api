@@ -16,7 +16,6 @@ class setPerson {
     async main() {
         await this.#validations()
         await this.#setPerson()
-        //await this.#getData()
 
         return this.#objResult
     }
