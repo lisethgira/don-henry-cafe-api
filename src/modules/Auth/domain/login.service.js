@@ -1,5 +1,6 @@
 //Lbreria
 const validator = require("validator").default;
+const jwt = require("jsonwebtoken")
 
 //Interface
 const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
@@ -8,6 +9,7 @@ class Login {
     //Objetc
     #objData
     #objResult
+    #objDataUser
 
     constructor(data){
         this.#objData = data 
@@ -51,11 +53,21 @@ class Login {
             throw new Error(query.msg)
         }
 
+        this.#objDataUser = query.data
+        const secretKey = process.env.KEY_TOKEN
+
+        const token = jwt.sign({
+            ...this.#objDataUser
+        },
+        secretKey,
+        {expiresIn:process.env.TOKEN_EXPIRATION,algorithm: "HS256"})
+        
         this.#objResult={
             error: query.error,
             msg: query.msg,
-            data: query.data,
+            data: token,
         }
+
     }
 }
 
