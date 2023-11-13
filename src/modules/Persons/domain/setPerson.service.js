@@ -47,7 +47,11 @@ class setPerson {
 
     async #setPerson() {
         const dao = new classInterfaceDAOPersons()
-        const query = await dao.setPerson(this.#objData)
+        
+        const query = await dao.setPerson({
+            ...this.#objData,
+            bitActivo:true,
+        })
 
         if (query.error) {
             throw new Error(query.msg)

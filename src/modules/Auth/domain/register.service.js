@@ -7,7 +7,7 @@ const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 //Sercive
 const serviceSetPerson = require("../../Persons/domain/setPerson.service")
 
-class Login {
+class Register {
     //Objetc
     #objData
     #objResult
@@ -103,21 +103,6 @@ class Login {
             data: query.data
         }
     }
-
-    async #validateData() {
-        const dao = new classInterfaceDAOMain()
-        const query = await dao.validateUser(this.#objData)
-
-        if (query.error) {
-            throw new Error(query.msg)
-        }
-
-        this.#objResult = {
-            error: query.error,
-            data: query.data,
-            msg: query.msg,
-        }
-    }
 }
 
-module.exports = Login
+module.exports = Register

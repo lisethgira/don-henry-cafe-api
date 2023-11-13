@@ -10,15 +10,21 @@ class daoAuth {
             const client = new Client(connection)
             await client.connect()
 
-            let response = await client.query(`
-                INSERT INTO public."tbl_Users"
-                VALUES (
-                    ${data.intIdPersona},
-                    ${data.intIdRol},
-                    ${data.strUsername},
-                    ${data.strPassword},
-                )
-                RETURNING intId`)
+            const query = `INSERT INTO public."tbl_Users"(
+                "intIdPersona",
+                "intIdRol",
+                "strUsername",
+                "strPassword"
+                ) VALUES ($1, $2, $3, $4) RETURNING *`
+
+            const values = [
+                data.intIdPersona,
+                data.intIdRol,
+                data.strUsername,
+                data.strPassword,
+            ]
+            
+            let response = await client.query(query, values)
 
             await client.end()
 
@@ -97,15 +103,19 @@ class daoAuth {
         }
     }
 
-    async getIntIdRoles() {
+    async getIntIdRoles(data) {
         try {
             const client = new Client(connection)
+
             await client.connect()
+
             let response = await client.query(`
             SELECT * 
             FROM public."tbl_Roles" 
             WHERE "strNombreRol" = '${data.strNombreRol}'`)
+
             await client.end()
+
             let result = {
                 error: false,
                 data: response.rows[0],
