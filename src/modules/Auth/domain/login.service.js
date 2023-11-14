@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken")
 //Interface
 const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 
+//Services
+const serviceGetPerson = require("../../Persons/domain/getPerson.service")
+
+//Functions
+const { compare } = require("../app/functions/handleBcrypt")
+
 class Login {
     //Objetc
     #objData
@@ -18,7 +24,6 @@ class Login {
     async main(){
         await this.#validations()
         await this.#validateData()
-        //await this.#getData()
 
         return this.#objResult
     }
@@ -26,6 +31,7 @@ class Login {
     //Validaciones del microservicio
     async #validations(){
         const dao = new classInterfaceDAOMain()
+
         if (!this.#objData?.strUsername && !this.#objData?.strPassword){
             throw new Error("Faltan campos requeridos.");
         }
@@ -34,7 +40,7 @@ class Login {
             throw new Error("El campo de Usuario contiene un formato no valido debe ser tipo email.");
         }
 
-        const queryGetUser = await dao.isExistsUser({strUsername:this.#objData.strUsername});
+        const queryGetUser = await dao.validateUser({strUsername:this.#objData.strUsername});
 
         if (queryGetUser.error) {
             throw new Error(queryGetUser.msg)
@@ -53,7 +59,15 @@ class Login {
             throw new Error(query.msg)
         }
 
-        this.#objDataUser = query.data
+        const objDataUser = query.data
+        const checkPassword = await compare(this.#objData.strPassword, objDataUser.strPassword)
+
+        if (!checkPassword) {
+            throw new Error("Contraseña incorrecta")
+        }
+
+        this.#getDataUser(objDataUser.intIdPerson)
+
         const secretKey = process.env.KEY_TOKEN
 
         const token = jwt.sign({
@@ -68,6 +82,18 @@ class Login {
             data: token,
         }
 
+    }
+
+    async #getDataUser(intIdPerson){
+        const query = await serviceGetPerson({
+            intId:intIdPerson
+        })
+
+        if (query.error) {
+            throw new Error(query.msg)
+        }
+
+        this.#objDataUser = query.data
     }
 }
 

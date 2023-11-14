@@ -51,12 +51,19 @@ class daoAuth {
         try {
             const client = new Client(connection)
             await client.connect()
-            let response = await client.query(`
-            SELECT * 
-            FROM public."tbl_Users" 
-            WHERE "strUsername" = '${data.strUsername}'
-            AND "strPassword" = '${data.strPassword}'`)
+
+            const query = `
+                SELECT *
+                FROM public."tbl_Users"
+                WHERE ("strUsername" = $1)
+            `
+
+            const values = [data.strUsername]
+
+            let response = await client.query(query,values)
+
             await client.end()
+
             let result = {
                 error: false,
                 msg: "el usuario se ha logueado correctamente.",
@@ -76,43 +83,21 @@ class daoAuth {
         }
     }
 
-    async isExistsUser(data) {
-        try {
-            const client = new Client(connection)
-            await client.connect()
-            let response = await client.query(`
-            SELECT *
-            FROM public."tbl_Users"     
-            WHERE "strUsername" = '${data.strUsername}'`)
-            await client.end()
-            let result = {
-                error: false,
-                data: response.rows[0]
-            }
-
-            return result
-        } catch (error) {
-            let result = {
-                error: true,
-                msg:
-                    error.message ||
-                    "Error en el metodo isExistsUser de la clase daoAuth",
-            };
-
-            return result;
-        }
-    }
-
     async getIntIdRoles(data) {
         try {
             const client = new Client(connection)
 
             await client.connect()
 
-            let response = await client.query(`
-            SELECT * 
-            FROM public."tbl_Roles" 
-            WHERE "strNombreRol" = '${data.strNombreRol}'`)
+            const query = `
+                SELECT *
+                FROM public."tbl_Roles"
+                WHERE ("strNombreRol" = $1)
+            `
+
+            const values = [data.strNombreRol]
+
+            let response = await client.query(query,values)
 
             await client.end()
 

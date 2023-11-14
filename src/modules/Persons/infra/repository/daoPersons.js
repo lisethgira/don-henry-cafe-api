@@ -171,7 +171,7 @@ class daoPersons {
                 error: true,
                 msg:
                     error.message ||
-                    "Error en el metodo isExistsUser de la clase daoPersons",
+                    "Error en el metodo isExistsPerson de la clase daoPersons",
             };
 
             return result;

@@ -8,7 +8,7 @@ const getPerson = async (objParams) => {
 
     console.log(intId);
 
-    let query = { intId: intId};
+    let query = { intId: intId };
 
     let result = await dao.getPerson(query);
 

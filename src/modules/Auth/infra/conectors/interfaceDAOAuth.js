@@ -24,13 +24,6 @@ class interfaceDAOMain{
         const res = await dao.getUser(data)
         return res
     }
-
-    async isExistsUser(data){
-        const dao = new classDao()
-        const res = await dao.isExistsUser(data)
-        return res
-    }
-
 }
 
 module.exports = interfaceDAOMain

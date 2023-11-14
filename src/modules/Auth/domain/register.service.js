@@ -7,6 +7,9 @@ const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 //Sercive
 const serviceSetPerson = require("../../Persons/domain/setPerson.service")
 
+//Functions
+const { encrypt } = require("../app/functions/handleBcrypt")
+
 class Register {
     //Objetc
     #objData
@@ -41,7 +44,7 @@ class Register {
             throw new Error("El campo de Usuario contiene un formato no valido debe ser tipo email.");
         }
 
-        const queryGetUser = await dao.isExistsUser({
+        const queryGetUser = await dao.validateUser({
             strUsername: this.#objData.strUsername
         });
 
@@ -86,11 +89,13 @@ class Register {
     async #setUser() {
         const dao = new classInterfaceDAOMain()
 
+        const hash = await encrypt(this.#objData.strPassword)
+
         const query = await dao.setUser({
             intIdPersona: this.#intIdPerson,
             intIdRol: this.#intIdRol,
             strUsername: this.#objData.strUsername,
-            strPassword: this.#objData.strPassword,
+            strPassword: hash,
         })
 
         if (query.error) {
