@@ -6,8 +6,6 @@ const getPerson = async (objParams) => {
 
     let dao = new classInterfacePerson();
 
-    console.log(intId);
-
     let query = { intId: intId };
 
     let result = await dao.getPerson(query);

@@ -6,7 +6,6 @@ const connection = require("../../../../common/config/confPG_connection")
 
 class daoPersons {
     async setPerson(data) {
-        console.log(data)
         try {
             const client = new Client(connection)
             await client.connect()
