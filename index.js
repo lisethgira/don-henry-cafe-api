@@ -1,4 +1,4 @@
-const clsServer = require("./modules/Main/app/server")
+const clsServer = require("./src/modules/Main/app/server")
 
 const init = () =>{
     let server = new clsServer();

@@ -11,14 +11,14 @@ class daoAuth {
             await client.connect()
 
             const query = `INSERT INTO public."tbl_Users"(
-                "intIdPersona",
+                "intIdPerson",
                 "intIdRol",
                 "strUsername",
                 "strPassword"
                 ) VALUES ($1, $2, $3, $4) RETURNING *`
 
             const values = [
-                data.intIdPersona,
+                data.intIdPerson,
                 data.intIdRol,
                 data.strUsername,
                 data.strPassword,

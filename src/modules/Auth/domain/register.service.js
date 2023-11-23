@@ -92,7 +92,7 @@ class Register {
         const hash = await encrypt(this.#objData.strPassword)
 
         const query = await dao.setUser({
-            intIdPersona: this.#intIdPerson,
+            intIdPerson: this.#intIdPerson,
             intIdRol: this.#intIdRol,
             strUsername: this.#objData.strUsername,
             strPassword: hash,
