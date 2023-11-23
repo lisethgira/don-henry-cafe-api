@@ -66,7 +66,7 @@ class Login {
             throw new Error("Contraseña incorrecta")
         }
 
-        this.#getDataUser(objDataUser.intIdPerson)
+        await this.#getDataUser(objDataUser.intIdPerson)
 
         const secretKey = process.env.KEY_TOKEN
 
@@ -93,7 +93,7 @@ class Login {
             throw new Error(query.msg)
         }
 
-        this.#objDataUser = query.data
+        this.#objDataUser = query.data[0]
     }
 }
 
