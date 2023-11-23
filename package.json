@@ -6,9 +6,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon index.js",
     "prod": "cross-env NODE_ENV=production nodemon index.js",
-    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "dev": "cross-env NODE_ENV=production nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "app": "nodemon index.js"
+    "app": "cross-env NODE_ENV=production nodemon index.js"
   },
   "repository": {
     "type": "git",

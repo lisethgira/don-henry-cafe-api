@@ -19,7 +19,7 @@ app.use(helmet());
 app.use(compression({ level: 9 }));
 
 //Router
-app.use("/henrycafe/api", require("../infra/http/apiMain.routes"));
+app.use(require("../infra/http/apiMain.routes"));
 app.use("/henrycafe/api", require("../../Persons/infra/http/apiPersons.routes"));
 app.use("/henrycafe/api", require("../../Auth/infra/http/apiAuth.routes"));
 

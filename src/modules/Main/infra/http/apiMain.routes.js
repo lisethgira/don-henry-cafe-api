@@ -4,6 +4,7 @@ routes.get("/", async (req, res) => {
     res.status(200).json({
       status: 200,
       msg: "Welcome to Rest API Don Henry Café app!",
+      env:process.env.ENV,
       contributors: [
         {
           alias: "lisethgira",
