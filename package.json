@@ -4,9 +4,9 @@
   "description": "Backend for Don Henry Café website",
   "main": "index.js",
   "scripts": {
-    "start": "node",
-    "prod": " cross-env NODE_ENV=production nodemon src/index.js",
-    "dev": " cross-env NODE_ENV=development nodemon src/index.js",
+    "start": "cross-env NODE_ENV=production nodemon src/index.js",
+    "prod": "cross-env NODE_ENV=production nodemon src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "app": "nodemon index.js"
   },
