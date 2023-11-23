@@ -10,5 +10,6 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "devCommand": "npm run prod"
 }
