@@ -20,8 +20,8 @@ app.use(compression({ level: 9 }));
 
 //Router
 app.use(require("../infra/http/apiMain.routes"));
+app.use(require("../../Auth/infra/http/apiAuth.routes"));
 app.use("/henrycafe/api", require("../../Persons/infra/http/apiPersons.routes"));
-app.use("/henrycafe/api", require("../../Auth/infra/http/apiAuth.routes"));
 app.use("/henrycafe/api", require("../../Products/infra/http/apiProducts.routes"))
 
 //Static

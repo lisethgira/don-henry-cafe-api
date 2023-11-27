@@ -17,11 +17,15 @@ class Login {
     #objResult
     #objDataUser
 
+    //Variables
+    #strNombreRol
+
     constructor(data){
         this.#objData = data 
     }
 
     async main(){
+        console.log(this.#objData)
         await this.#validations()
         await this.#validateData()
 
@@ -32,15 +36,15 @@ class Login {
     async #validations(){
         const dao = new classInterfaceDAOMain()
 
-        if (!this.#objData?.strUsername && !this.#objData?.strPassword){
+        if (!this.#objData?.strEmail && !this.#objData?.strPassword){
             throw new Error("Faltan campos requeridos.");
         }
 
-        if (!validator.isEmail(this.#objData?.strUsername)) {
+        if (!validator.isEmail(this.#objData?.strEmail)) {
             throw new Error("El campo de Usuario contiene un formato no valido debe ser tipo email.");
         }
 
-        const queryGetUser = await dao.validateUser({strUsername:this.#objData.strUsername});
+        const queryGetUser = await dao.validateUser({strEmail:this.#objData.strEmail});
 
         if (queryGetUser.error) {
             throw new Error(queryGetUser.msg)
@@ -60,6 +64,7 @@ class Login {
         }
 
         const objDataUser = query.data
+
         const checkPassword = await compare(this.#objData.strPassword, objDataUser.strPassword)
 
         if (!checkPassword) {
@@ -67,11 +72,13 @@ class Login {
         }
 
         await this.#getDataUser(objDataUser.intIdPerson)
+        await this.#getRol(objDataUser.intIdRol)
 
         const secretKey = process.env.KEY_TOKEN
 
         const token = jwt.sign({
-            ...this.#objDataUser
+            ...this.#objDataUser,
+            strRol:this.#strNombreRol
         },
         secretKey,
         {expiresIn:process.env.TOKEN_EXPIRATION,algorithm: "HS256"})
@@ -94,6 +101,19 @@ class Login {
         }
 
         this.#objDataUser = query.data[0]
+    }
+
+    async #getRol(intIdRol){
+        const dao = new classInterfaceDAOMain()
+        const query = await dao.getRolesById({
+            intIdRol:intIdRol
+        })
+
+        if (query.error) {
+            throw new Error(query.msg)
+        }
+        
+        this.#strNombreRol = query.data.strNombreRol
     }
 }
 

@@ -18,6 +18,12 @@ class interfaceDAOMain{
         const res = await dao.getIntIdRoles(data)
         return res
     }
+
+    async getRolesById(data){
+        const dao = new classDao()
+        const res = await dao.getRolesById(data)
+        return res
+    }
     
     async getData(data){
         const dao = new classDao()

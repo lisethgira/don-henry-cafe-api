@@ -16,8 +16,9 @@ class daoPersons {
                 "dtBirthdayDate",
                 "strEmail",
                 "strPhoneNumber",
-                "bitActivo"
-            ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
+                "bitActivo",
+                "strNumberWhatsapp"
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`
 
             const values = [
                 data.strNames,
@@ -26,6 +27,7 @@ class daoPersons {
                 data.strEmail,
                 data.strPhoneNumber,
                 data.bitActivo,
+                data.strNumberWhatsapp
             ]
             
             let response = await client.query(query, values)

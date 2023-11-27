@@ -1,11 +1,13 @@
 //Lbreria
 const validator = require("validator").default;
+const jwt = require("jsonwebtoken")
 
 //Interface
 const classInterfaceDAOMain = require("../infra/conectors/interfaceDAOAuth")
 
 //Sercive
 const serviceSetPerson = require("../../Persons/domain/setPerson.service")
+const serviceGetPerson = require("../../Persons/domain/getPerson.service")
 
 //Functions
 const { encrypt } = require("../app/functions/handleBcrypt")
@@ -14,10 +16,12 @@ class Register {
     //Objetc
     #objData
     #objResult
+    #objDataPerson
 
     //Variable
     #intIdPerson
     #intIdRol
+    #strNombreRol
     
     constructor(data) {
         this.#objData = data
@@ -40,12 +44,12 @@ class Register {
             throw new Error("Faltan campos requeridos.");
         }
 
-        if (!validator.isEmail(this.#objData?.strUsername)) {
+        if (!validator.isEmail(this.#objData?.strEmail)) {
             throw new Error("El campo de Usuario contiene un formato no valido debe ser tipo email.");
         }
 
         const queryGetUser = await dao.validateUser({
-            strUsername: this.#objData.strUsername
+            strUsername: this.#objData.strEmail
         });
 
         if (queryGetUser.error) {
@@ -73,8 +77,11 @@ class Register {
 
     async #setPerson() {
         const service = new serviceSetPerson({
-            strEmail: this.#objData?.strUsername,
-            strPhoneNumber: this.#objData?.strPhoneNumber
+            strNames: this.#objData?.strNames,
+            strLastNames: this.#objData?.strLastNames,
+            strEmail: this.#objData?.strEmail,
+            strPhoneNumber: this.#objData?.strPhoneNumber,
+            strNumberWhatsapp: this.#objData?.strNumberWhatsapp
         })
 
         const query = await service.main()
@@ -84,6 +91,7 @@ class Register {
         }
 
         this.#intIdPerson = query.data.intId
+        this.#objDataPerson = query.data
     }
 
     async #setUser() {
@@ -94,7 +102,7 @@ class Register {
         const query = await dao.setUser({
             intIdPerson: this.#intIdPerson,
             intIdRol: this.#intIdRol,
-            strUsername: this.#objData.strUsername,
+            strUsername: this.#objData.strEmail,
             strPassword: hash,
         })
 
@@ -102,11 +110,38 @@ class Register {
             throw new Error(query.msg)
         }
 
+        await this.#getRol(this.#intIdRol)
+
+        const secretKey = process.env.KEY_TOKEN
+
+        const token = jwt.sign({
+            ...this.#objDataPerson,
+            strRol:this.#strNombreRol
+        },
+        secretKey,
+        {expiresIn:process.env.TOKEN_EXPIRATION,algorithm: "HS256"})
+
         this.#objResult = {
             error: query.error,
             msg: query.msg,
-            data: query.data
+            data: {
+                ...query.data,
+                token
+            }
         }
+    }
+
+    async #getRol(intIdRol){
+        const dao = new classInterfaceDAOMain()
+        const query = await dao.getRolesById({
+            intIdRol:intIdRol
+        })
+
+        if (query.error) {
+            throw new Error(query.msg)
+        }
+        
+        this.#strNombreRol = query.data.strNombreRol
     }
 }
 

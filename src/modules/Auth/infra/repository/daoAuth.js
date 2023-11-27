@@ -58,7 +58,7 @@ class daoAuth {
                 WHERE ("strUsername" = $1)
             `
 
-            const values = [data.strUsername]
+            const values = [data.strEmail]
 
             let response = await client.query(query,values)
 
@@ -96,6 +96,42 @@ class daoAuth {
             `
 
             const values = [data.strNombreRol]
+
+            let response = await client.query(query,values)
+
+            await client.end()
+
+            let result = {
+                error: false,
+                data: response.rows[0],
+            }
+
+            return result
+        } catch (error) {
+            let result = {
+                error: true,
+                msg:
+                    error.message ||
+                    "Error en el metodo validateUser de la clase daoAuth",
+            };
+
+            return result;
+        }
+    }
+
+    async getRolesById(data) {
+        try {
+            const client = new Client(connection)
+
+            await client.connect()
+
+            const query = `
+                SELECT *
+                FROM public."tbl_Roles"
+                WHERE ("intId" = $1)
+            `
+
+            const values = [data.intIdRol]
 
             let response = await client.query(query,values)
 
